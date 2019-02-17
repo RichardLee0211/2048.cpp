@@ -150,6 +150,6 @@ int wenchen_upload(char* ptr, uint ptr_size){
 
     printf("Received %zd bytes: %s\n", nread, buf);
 
-    // exit(EXIT_SUCCESS);
+    exit(EXIT_SUCCESS);
     return 0;
 }
