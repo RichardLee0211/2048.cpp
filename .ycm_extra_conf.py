@@ -13,6 +13,7 @@ flags = [
         '-std=c++17',
         '-xc++',
         '-isystem/usr/include/',
+        '-I./src/headers',
         ]
 
 SOURCE_EXTENSIONS = [ '.cpp', '.cxx', '.cc', '.c', ]

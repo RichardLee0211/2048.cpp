@@ -13,7 +13,7 @@ void Scoreboard::prompt() {
 
 void Scoreboard::writeToFile() {
 
-  std::fstream scores("../data/scores.txt", std::ios_base::app);
+  std::fstream scores(SCORE_PATH, std::ios_base::app);
   scores << std::endl
          << name << " " << score << " " << win << " " << moveCount << " "
          << largestTile << " " << duration;
@@ -135,7 +135,7 @@ void Scoreboard::padding(std::string name) {
 
 void Scoreboard::readFile() {
 
-  std::ifstream scores("../data/scores.txt");
+  std::ifstream scores(SCORE_PATH);
   if (scores.fail()) {
     return;
   }

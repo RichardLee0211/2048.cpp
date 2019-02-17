@@ -17,6 +17,7 @@
 #include <string>
 #include <vector>
 
+
 enum Directions { UP, DOWN, RIGHT, LEFT };
 
 class Tile {
@@ -57,7 +58,7 @@ private:
   ull largestTile;
   long long moveCount;
   double duration;
-  ull gameBoardPlaySize;
+  ull gameBoardPlaySize; // wenchen: is there a need to use ull
   std::vector<std::vector<Tile>> board;
   RandInt randInt;
   bool stateSaved;
@@ -88,8 +89,8 @@ private:
 
 public:
   Game()
-      : win(false), moved(true), boardFull(false), rexit(false), score(0),
-        bestScore(0), moveCount(-2), largestTile(2), stateSaved(false),
+      : moved(true), win(false), boardFull(false), rexit(false), score(0),
+        bestScore(0), largestTile(2), moveCount(-2), stateSaved(false),
         noSave(false) {}
   void startGame();
   void continueGame();

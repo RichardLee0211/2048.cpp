@@ -9,10 +9,13 @@ void Menu::startMenu(int err) {
   endl(2);
   std::cout << "          1. Play a New Game";
   endl();
-  std::cout << "          2. Continue Previous Game";
+  // wenchen: for this hackthon, do not save and continue game
+  // std::cout << "          2. Continue Previous Game";
+  // endl();
+  // std::cout << "          3. View Highscores and Statistics locally";
+  // endl(2);
+  std::cout << "          z. Ctrl-c to exit";
   endl();
-  std::cout << "          3. View Highscores and Statistics";
-  endl(2);
 
   input(err);
 }
@@ -37,12 +40,16 @@ void Menu::input(int err) {
   case '1':
     startGame();
     break;
+    /*
   case '2':
     continueGame();
     break;
+    */
+    /*
   case '3':
     showScores();
     break;
+    */
   default:
     startMenu(1);
     break;
@@ -50,7 +57,6 @@ void Menu::input(int err) {
 }
 
 void Menu::startGame() {
-
   Game g;
   g.startGame();
 }

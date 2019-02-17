@@ -2,7 +2,7 @@
 
 bool Stats::collectStatistics() {
 
-  std::ifstream statistics("../data/statistics.txt");
+  std::ifstream statistics(DATA_FILE_PATH, std::ifstream::out);
   if (statistics.fail()) {
     return false;
   }

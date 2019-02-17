@@ -51,9 +51,9 @@ Color::Modifier Tile::tileColor(ull value) {
 }
 
 void Game::initialiseBoardArray() {
-  for (int i = 0; i < gameBoardPlaySize; i++) {
+  for (int i = 0; i < (int)gameBoardPlaySize; i++) {
     std::vector<Tile> bufferArray;
-    for (int j = 0; j < gameBoardPlaySize; j++) {
+    for (int j = 0; j < (int)gameBoardPlaySize; j++) {
       Tile bufferTile;
       bufferArray.push_back(bufferTile);
     }
@@ -64,7 +64,7 @@ void Game::initialiseBoardArray() {
 int GetLines() {
   int noOfLines = 0;
   std::string tempLine;
-  std::ifstream stateFile("./data/previousGame");
+  std::ifstream stateFile(PREVIOUS_GAME_PATH);
   while (std::getline(stateFile, tempLine, '\n')) {
     noOfLines++;
   }
@@ -74,26 +74,26 @@ int GetLines() {
 
 void Game::initialiseContinueBoardArray() {
 
-  std::ifstream stateFile("./data/previousGame");
+  std::ifstream stateFile(PREVIOUS_GAME_PATH);
   if ((bool)stateFile) {
     std::string temp, tempLine, tempBlock;
     gameBoardPlaySize = GetLines();
     initialiseBoardArray();
     std::string tempArr[gameBoardPlaySize][gameBoardPlaySize];
     int i = 0, j, k;
-    while (std::getline(stateFile, tempLine, '\n') && i < gameBoardPlaySize) {
+    while (std::getline(stateFile, tempLine, '\n') && i < (int)gameBoardPlaySize) {
       std::stringstream line(tempLine);
       j = 0;
-      while (std::getline(line, temp, ',') && j < gameBoardPlaySize) {
+      while (std::getline(line, temp, ',') && j < (int)gameBoardPlaySize) {
         tempArr[i][j] = temp;
         j++;
       }
       i++;
     }
 
-    for (int i = 0; i < gameBoardPlaySize; i++) {
+    for (int i = 0; i < (int)gameBoardPlaySize; i++) {
       std::vector<Tile> bufferArray;
-      for (int j = 0; j < gameBoardPlaySize; j++) {
+      for (int j = 0; j < (int)gameBoardPlaySize; j++) {
         std::stringstream blocks(tempArr[i][j]);
         k = 0;
         Tile bufferTile;
@@ -108,7 +108,7 @@ void Game::initialiseContinueBoardArray() {
       }
     }
     stateFile.close();
-    std::ifstream stats("./data/previousGameStats");
+    std::ifstream stats(PREVIOUS_GAME_PATH);
     while (std::getline(stats, tempLine, '\n')) {
       std::stringstream line(tempLine);
       k = 0;
@@ -374,16 +374,16 @@ next:
 
 bool Game::canMove() {
 
-  for (int y = 0; y < gameBoardPlaySize; y++) {
-    for (int x = 0; x < gameBoardPlaySize; x++) {
+  for (int y = 0; y < (int)gameBoardPlaySize; y++) {
+    for (int x = 0; x < (int)gameBoardPlaySize; x++) {
       if (!board[y][x].value) {
         return true;
       }
     }
   }
 
-  for (int y = 0; y < gameBoardPlaySize; y++) {
-    for (int x = 0; x < gameBoardPlaySize; x++) {
+  for (int y = 0; y < (int)gameBoardPlaySize; y++) {
+    for (int x = 0; x < (int)gameBoardPlaySize; x++) {
       if (testAdd(y + 1, x, board[y][x].value)) {
         return true;
       }
@@ -404,8 +404,8 @@ bool Game::canMove() {
 
 bool Game::testAdd(int y, int x, ull value) {
 
-  if (y < 0 || y > gameBoardPlaySize - 1 || x < 0 ||
-      x > gameBoardPlaySize - 1) {
+  if (y < 0 || y > (int)gameBoardPlaySize - 1 || x < 0 ||
+      x > (int)gameBoardPlaySize - 1) {
     return false;
   }
 
@@ -414,8 +414,8 @@ bool Game::testAdd(int y, int x, ull value) {
 
 void Game::unblockTiles() {
 
-  for (int y = 0; y < gameBoardPlaySize; y++) {
-    for (int x = 0; x < gameBoardPlaySize; x++) {
+  for (int y = 0; y < (int)gameBoardPlaySize; y++) {
+    for (int x = 0; x < (int)gameBoardPlaySize; x++) {
       board[y][x].blocked = false;
     }
   }
@@ -427,9 +427,9 @@ void Game::decideMove(Directions d) {
 
   case UP:
 
-    for (int x = 0; x < gameBoardPlaySize; x++) {
+    for (int x = 0; x < (int)gameBoardPlaySize; x++) {
       int y = 1;
-      while (y < gameBoardPlaySize) {
+      while (y < (int)gameBoardPlaySize) {
         if (board[y][x].value) {
           move(y, x, -1, 0);
         }
@@ -440,7 +440,7 @@ void Game::decideMove(Directions d) {
 
   case DOWN:
 
-    for (int x = 0; x < gameBoardPlaySize; x++) {
+    for (int x = 0; x < (int)gameBoardPlaySize; x++) {
       int y = gameBoardPlaySize - 2;
       while (y >= 0) {
         if (board[y][x].value) {
@@ -453,9 +453,9 @@ void Game::decideMove(Directions d) {
 
   case LEFT:
 
-    for (int y = 0; y < gameBoardPlaySize; y++) {
+    for (int y = 0; y < (int)gameBoardPlaySize; y++) {
       int x = 1;
-      while (x < gameBoardPlaySize) {
+      while (x < (int)gameBoardPlaySize) {
         if (board[y][x].value) {
           move(y, x, 0, -1);
         }
@@ -466,7 +466,7 @@ void Game::decideMove(Directions d) {
 
   case RIGHT:
 
-    for (int y = 0; y < gameBoardPlaySize; y++) {
+    for (int y = 0; y < (int)gameBoardPlaySize; y++) {
       int x = gameBoardPlaySize - 2;
       while (x >= 0) {
         if (board[y][x].value) {
@@ -529,7 +529,7 @@ void Game::move(int y, int x, int k, int l) {
     moved = true;
   }
 
-  if (k + l == 1 && (k == 1 ? y : x) < gameBoardPlaySize - 2) {
+  if (k + l == 1 && (k == 1 ? y : x) < (int)gameBoardPlaySize - 2) {
     move(y + k, x + l, k, l);
   } else if (k + l == -1 && (k == -1 ? y : x) > 1) {
     move(y + k, x + l, k, l);
@@ -562,7 +562,7 @@ void Game::saveStats() {
   stats.totalMoveCount += moveCount;
   stats.totalDuration += duration;
 
-  std::fstream statistics("../data/statistics.txt");
+  std::fstream statistics(STATISTICS_PATH);
   statistics << stats.bestScore << std::endl
              << stats.gameCount << std::endl
              << stats.winCount << std::endl
@@ -687,7 +687,9 @@ void Game::startGame() {
     bestScore = stats.bestScore;
   }
 
-  setBoardSize();
+  // setBoardSize();
+  // for simple
+  this->gameBoardPlaySize = 4;
 
   initialiseBoardArray();
   addTile();
