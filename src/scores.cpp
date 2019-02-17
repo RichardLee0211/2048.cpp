@@ -11,8 +11,8 @@ void Scoreboard::prompt() {
   std::cin >> name;
 }
 
+/* write to data/scores.txt */
 void Scoreboard::writeToFile() {
-
   std::fstream scores(SCORE_PATH, std::ios_base::app);
   scores << std::endl
          << name << " " << score << " " << win << " " << moveCount << " "

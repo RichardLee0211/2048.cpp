@@ -569,6 +569,21 @@ void Game::saveStats() {
              << stats.totalMoveCount << std::endl
              << stats.totalDuration;
 
+  /* wenchen: send stats to server if server is up */
+  printf("do you wanna upload your records? y/n: ");
+  char temp{'n'};
+  std::cin>>temp;
+  if(temp == 'y'){
+    char ptr[500];
+    char name[100];
+    printf("please input your name: ");
+    std::cin>>name;
+    sprintf(ptr, "%s, %llu", name, stats.bestScore);
+    wenchen_upload(ptr, strlen(ptr));
+  }else{
+    printf("quit upload/n");
+  }
+
   statistics.close();
 }
 
@@ -582,13 +597,14 @@ void Game::saveScore() {
   s.save();
 }
 
+/* no one use you now */
 void Game::saveState() {
   std::remove("../data/previousGame");
   std::remove("../data/previousGameStats");
   std::fstream stats("../data/previousGameStats", std::ios_base::app);
   std::fstream stateFile("../data/previousGame", std::ios_base::app);
-  for (int y = 0; y < gameBoardPlaySize; y++) {
-    for (int x = 0; x < gameBoardPlaySize; x++) {
+  for (int y = 0; y < (int)gameBoardPlaySize; y++) {
+    for (int x = 0; x < (int)gameBoardPlaySize; x++) {
       stateFile << board[y][x].value << ":" << board[y][x].blocked << ",";
       endl();
     }
@@ -646,8 +662,8 @@ void Game::playGame(ContinueStatus cont) {
   }
 }
 
+/* no one calling you now */
 void Game::setBoardSize() {
-
   enum { MIN_GAME_BOARD_PLAY_SIZE = 3, MAX_GAME_BOARD_PLAY_SIZE = 10 };
   bool err = false;
   gameBoardPlaySize = 0;
@@ -688,7 +704,7 @@ void Game::startGame() {
   }
 
   // setBoardSize();
-  // for simple
+  // wenchen
   this->gameBoardPlaySize = 4;
 
   initialiseBoardArray();

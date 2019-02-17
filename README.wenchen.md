@@ -53,6 +53,50 @@ using something.hpp to include everything needed in something.cpp.
 
 in desing pattern, this should be one instance design pattern
 
+statistics and scores are not well designed
+
+this doesn't seem to be managable
+```cpp
+      std::cout << "  "
+                   "┌─────┬────────────────────┬──────────┬──────┬───────┬─────"
+                   "─────────┬──────────────┐";
+      endl();
+      std::cout << "  │ " << bold_on << "No." << bold_off << " │ " << bold_on
+                << "Name" << bold_off << "               │ " << bold_on
+                << "Score" << bold_off << "    │ " << bold_on << "Won?"
+                << bold_off << " │ " << bold_on << "Moves" << bold_off << " │ "
+                << bold_on << "Largest Tile" << bold_off << " │ " << bold_on
+                << "Duration    " << bold_off << " │";
+      endl();
+      std::cout << "  "
+                   "├─────┼────────────────────┼──────────┼──────┼───────┼─────"
+                   "─────────┼──────────────┤";
+      endl();
+    }
+
+    std::cout << "  │ " << std::setw(2) << size - i << ". │ " << playerName;
+    padding(playerName);
+    std::cout << " │ " << std::setw(8) << playerScore << " │ " << std::setw(4)
+              << won << " │ " << std::setw(5) << moveCount << " │ "
+              << std::setw(12) << largestTile << " │ " << std::setw(12)
+              << secondsFormat(duration) << " │ ";
+    endl();
+```
+
+this design...
+```cpp
+    void Game::saveStats() {
+      Stats stats;
+      stats.collectStatistics();
+      stats.bestScore = stats.bestScore < score ? score : stats.bestScore;
+      stats.gameCount++;
+      stats.winCount = win ? stats.winCount + 1 : stats.winCount;
+```
+
+now, I don't wanna touch this code, leave his logic alone
+
+not a nice solution, but got to make it work
+
 about YCM "Maximum number of diagnostics exceeded."
 [here](https://github.com/theodelrieu/dotfiles/blob/master/.ycm_extra_conf.py)
 the recommanded [.ycm_extra_config](https://github.com/theodelrieu/dotfiles/blob/master/.ycm_extra_conf.py)

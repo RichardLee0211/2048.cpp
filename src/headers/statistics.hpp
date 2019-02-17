@@ -3,6 +3,7 @@
 
 #include "global.hpp"
 #include <fstream>
+#include<string>
 
 
 class Stats {

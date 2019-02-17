@@ -3,9 +3,9 @@
 
 /* PATH setting */
 #define STATISTICS_PATH "./data/statistics.txt"
-#define PREVIOUS_GAME_PATH "./data/previousGame"
-#define DATA_FILE_PATH "./data/statistics.txt"
 #define SCORE_PATH "./data/scores.txt"
+#define PREVIOUS_GAME_PATH "./data/previousGame"
+#define DATA_FILE_PATH "./data/previousGameStats"
 
 #include <cstdlib>
 #include <iomanip>
@@ -21,5 +21,6 @@ void clearScreen();
 
 std::string secondsFormat(double);
 
+int wenchen_upload(char* ptr, uint ptr_size);
 
 #endif
