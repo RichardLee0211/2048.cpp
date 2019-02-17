@@ -58,7 +58,7 @@ private:
   ull largestTile;
   long long moveCount;
   double duration;
-  ull gameBoardPlaySize; // wenchen: is there a need to use ull
+  int gameBoardPlaySize; // wenchen: is there a need to use ull
   std::vector<std::vector<Tile>> board;
   RandInt randInt;
   bool stateSaved;

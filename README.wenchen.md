@@ -23,7 +23,7 @@ something I need know more:
 
 statistics.hpp would be what I need to transfer
 
-how to do this?: in color.hpp
+how to do this?: in color.hpp, a wrapper on terminal coloring
 ```cpp
     std::cout<<red<<blue
     std::cout<<bold_on
@@ -32,6 +32,33 @@ how to do this?: in color.hpp
                 << "  Please enter your name to save this score: " << bold_off;
     endl(3);
 ```
+
+code like this to draw the data structure
+```cpp
+    if (y == 0) {
+      std::cout << "┌";
+    } else {
+      std::cout << "├";
+    }
+    for (int i = 0; i < (int)gameBoardPlaySize; i++) {
+      std::cout << "──────";
+      if (i < (int)gameBoardPlaySize - 1) {
+        if (y == 0) {
+          std::cout << "┬";
+        } else {
+          std::cout << "┼";
+        }
+      } else {
+        if (y == 0) {
+          std::cout << "┐";
+        } else {
+          std::cout << "┤";
+        }
+      }
+    }
+```
+
+the biggest logic in game.cpp
 
 TODO:
 need to creat this own data if it doesn't exist
@@ -106,10 +133,21 @@ TODO: need more checks??
   std::ifstream statistics("../data/statistics.txt");
 ```
 
+TODO: add redo
+C++ Boost serialization
+
+A good online ascii art generator
+
 go to check the compter network code
 --------------------------------------------------------------------------------
 
 got segmentation fault at the first time I run it
+
+If I wanna diliver my software to customers, then I need to know a bit about windows
+
+If I wanna build marware, then I need a public IP to host my backend
+
+in a Hackthon, a idea that suit a category is more important than code itself
 
 
 they

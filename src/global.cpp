@@ -66,7 +66,9 @@ std::string secondsFormat(double sec) {
   return oss.str();
 }
 
-/* wenchen: could believe I would put client code here */
+/* wenchen: could not believe I would put client code here
+ * for Hackthon purpose
+ */
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netdb.h>
@@ -84,7 +86,7 @@ int wenchen_upload(char* ptr, uint ptr_size){
 
     struct addrinfo hints;
     struct addrinfo *result, *rp;
-    int sfd, s, j;
+    int sfd, s;
     long len;
     ssize_t nread;
     char buf[BUF_SIZE];

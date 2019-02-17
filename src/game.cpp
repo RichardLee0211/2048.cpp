@@ -154,8 +154,8 @@ bool Game::addTile() {
 
 void Game::collectFreeTiles(std::vector<std::vector<int>> &freeTiles) {
 
-  for (int y = 0; y < gameBoardPlaySize; y++) {
-    for (int x = 0; x < gameBoardPlaySize; x++) {
+  for (int y = 0; y < (int)gameBoardPlaySize; y++) {
+    for (int x = 0; x < (int)gameBoardPlaySize; x++) {
       if (!board[y][x].value) {
         std::vector<int> newEmpty{y, x};
         freeTiles.push_back(newEmpty);
@@ -170,7 +170,7 @@ void Game::drawBoard() {
   drawAscii();
   drawScoreBoard(std::cout);
 
-  for (int y = 0; y < gameBoardPlaySize; y++) {
+  for (int y = 0; y < (int)gameBoardPlaySize; y++) {
 
     std::cout << "  ";
 
@@ -179,9 +179,9 @@ void Game::drawBoard() {
     } else {
       std::cout << "├";
     }
-    for (int i = 0; i < gameBoardPlaySize; i++) {
+    for (int i = 0; i < (int)gameBoardPlaySize; i++) {
       std::cout << "──────";
-      if (i < gameBoardPlaySize - 1) {
+      if (i < (int)gameBoardPlaySize - 1) {
         if (y == 0) {
           std::cout << "┬";
         } else {
@@ -198,7 +198,7 @@ void Game::drawBoard() {
     endl();
     std::cout << " ";
 
-    for (int x = 0; x < gameBoardPlaySize; x++) {
+    for (int x = 0; x < (int)gameBoardPlaySize; x++) {
 
       Tile currentTile = board[y][x];
 
@@ -582,6 +582,7 @@ void Game::saveStats() {
     wenchen_upload(ptr, strlen(ptr));
   }else{
     printf("quit upload/n");
+    exit(EXIT_SUCCESS);
   }
 
   statistics.close();
