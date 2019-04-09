@@ -149,6 +149,17 @@ If I wanna build marware, then I need a public IP to host my backend
 
 in a Hackthon, a idea that suit a category is more important than code itself
 
+what if I wanna a program to run in the background automatically, imagine that I could use program in some macOS
+how to self-copy and self-destroy programming
+
+I could search each computer in this local network for each port
+which port would usually litsening??
+
+I looked not cool for stay up all night
+a marware that take clipboard, screenprint, keystrock and so on
+
+I need to compile project into executable files for quick hacking
+
 
 they
 ================================================================================
@@ -157,6 +168,8 @@ they named their team
 they designed their webpage
 they designed the logo
 they encounter online API problems
+they fellow blogger and tutorials
+they talk about deep learning and big data like journalist
 
 host
 ================================================================================
